@@ -17,8 +17,10 @@ for table_name in templates:
     # print(table_fields)
     # print(templates.get(table_name))
     # print(table_name)
-    print('CREATE TABLE', table_name.lower(), '(')
+    print(f'CREATE TABLE {table_name.lower()} (')
     print(f'    {table_name.lower()}_id SERIAL PRIMARY KEY,')
+    print(f'    {table_name.lower()}_created timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,')
+    print(f'    {table_name.lower()}_updated timestamp,')
     fields = len(table_fields)
     for field, value in table_fields.items():
         print(f'    {table_name.lower()}_{field} {value} NOT NULL', end='')
