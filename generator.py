@@ -1,22 +1,8 @@
 import yaml
-from pprint import pprint
 
 
-with open('schema.yml') as f:
-    templates = yaml.safe_load(f)
-
-# pprint(templates)
-
-tables_list = list(templates)
-# print(tables_list)
-# print(list(templates.get(tables_list[0])))
-
-for table_name in templates:
-    # print(table_name)
+def create_table_sql(schema):
     table_fields = templates.get(table_name).get('fields')
-    # print(table_fields)
-    # print(templates.get(table_name))
-    # print(table_name)
     print(f'CREATE TABLE {table_name.lower()} (')
     print(f'    {table_name.lower()}_id SERIAL PRIMARY KEY,')
     print(f'    {table_name.lower()}_created timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,')
@@ -28,3 +14,19 @@ for table_name in templates:
             print(',')
             fields -= 1
     print('\n);')
+
+
+def create_function_sql(schema):
+    pass
+
+
+def create_trigger_sql(schema):
+    pass
+
+
+# add UI as 'Please type the file name in format ".yml" (For example: "schema.yml")
+with open('schema.yml') as f:
+    templates = yaml.safe_load(f)
+
+for table_name in templates:
+    create_table_sql(table_name)
