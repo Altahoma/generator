@@ -43,8 +43,7 @@ def create_trigger_sql(table_name):
 
 
 def parser():
-    print('Please enter the file name in the format ".yml" (For example: "schema.yml")')
-    schema = input()
+    schema = input('Please enter the file name in the format ".yml" (For example: "schema.yml")\n')
     with open(schema) as file:
         templates = yaml.safe_load(file)
 
